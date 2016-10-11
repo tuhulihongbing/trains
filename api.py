@@ -9,4 +9,15 @@ class Api(object):
     def api_suggest_train_name(self, keyword):
         url = config.url_qunar_suggest_name % keyword
         result = requests.get(url)
-        res = result.json()
+        suggest_list = []
+        if result.status_code == 200:
+            res = result.json()
+            try:
+                suggest_list = res["dataMap"]["result"]
+            except Exception,e:
+                print e.message
+        else:
+            print "The Result Code is " % result.status_code
+        return suggest_list
+
+

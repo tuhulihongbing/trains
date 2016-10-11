@@ -7,10 +7,9 @@ class trains(object):
     def __init__(self):
         self.trains_db = database_trains()
         self.api = Api()
-        pass
 
     def get_one_suggest_train_number(self, raw1):
-        pass
+        suggest_list = self.api.api_suggest_train_name(raw1)
 
     def get_one_train_detail(self):
         pass
@@ -22,8 +21,9 @@ class trains(object):
         sql = config.sql_select_raw_train_number
         result = self.trains_db.sql_exec(sql)
         for res in result:
-            sugests = self.get_one_suggest_train_number(res[0])
-        pass
+            suggest_list = self.get_one_suggest_train_number(res[0])
+            for suggest in suggest_list:
+                
 
     def get_train_details(self):
         pass
